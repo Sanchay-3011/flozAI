@@ -8,24 +8,8 @@ FlozAI is a premium, multi-tenant AI reasoning layer for workflow automation (Za
 
 *Below is a visual overview of the FlozAI system interface:*
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      FlozAI Dashboard                       │
-│                                                             │
-│   "Sync my new Salesforce Leads with my Slack channel"      │
-│   [ Generate Workflow Button ]                              │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     Interactive Canvas                      │
-│                                                             │
-│  [ Salesforce Trigger ] ───> [ Condition ] ───> [ Slack ]   │
-│                                                             │
-│  [ Real-Time Logs ]                                         │
-└─────────────────────────────────────────────────────────────┘
-```
+![FlozAI Dashboard Screenshot](docs/screenshot.png)
+
 
 ---
 
