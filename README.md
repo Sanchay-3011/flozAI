@@ -6,7 +6,7 @@ FlozAI is a premium, multi-tenant AI reasoning layer for workflow automation (Za
 
 ## 📸 Screenshots
 
-*Below is a visual overview of the FlozAI system interface:*
+*Below is a visual representation overview of the FlozAI system interface:*
 
 ![FlozAI Dashboard Screenshot](docs/screenshot.png)
 
