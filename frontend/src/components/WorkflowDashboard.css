@@ -1,0 +1,492 @@
+/* Workflow Dashboard Styles */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Workflows Section */
+.workflows-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+}
+
+.workflows-section h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.workflows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.workflow-card {
+  padding: 12px;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.workflow-card:hover {
+  border-color: #667eea;
+  background: #f6f8ff;
+}
+
+.workflow-card.selected {
+  border-color: #667eea;
+  background: #f0f4ff;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.workflow-card h4 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.workflow-card p {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workflow-card small {
+  display: block;
+  font-size: 11px;
+  color: #999;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.workflow-card:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background: #ff5252;
+}
+
+.empty-state {
+  color: #999;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.create-workflow {
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.create-workflow h3 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.create-workflow input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-success {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+  background: #51cf66;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #40c057;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(81, 207, 102, 0.4);
+}
+
+/* Workflow Details */
+.workflow-details {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.details-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #333;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #e0e0e0;
+  color: #999;
+}
+
+/* Tasks Section */
+.tasks-section h3,
+.stats-section h3,
+.logs-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.task-item:hover {
+  background: #f0f0f0;
+  border-color: #ddd;
+}
+
+.task-info {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-index {
+  font-weight: 600;
+  color: #667eea;
+  min-width: 20px;
+}
+
+.task-name {
+  color: #333;
+  font-size: 14px;
+}
+
+.status-select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background: white;
+}
+
+.status-select.status-completed {
+  background: #d4edda;
+  border-color: #51cf66;
+  color: #2f5233;
+}
+
+.status-select.status-failed {
+  background: #f8d7da;
+  border-color: #ff6b6b;
+  color: #5c2e30;
+}
+
+.status-select.status-running {
+  background: #e7f3ff;
+  border-color: #667eea;
+  color: #003a70;
+}
+
+.add-task {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.add-task input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.add-task button {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+}
+
+/* Stats Section */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat-card label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+}
+
+.stat-card.success .stat-value {
+  color: #51cf66;
+}
+
+.stat-card.failed .stat-value {
+  color: #ff6b6b;
+}
+
+/* Logs Section */
+.logs-section {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  padding: 12px;
+  background: #f9f9f9;
+  border-left: 4px solid #ddd;
+  border-radius: 4px;
+}
+
+.log-entry.log-success {
+  background: #d4edda;
+  border-left-color: #51cf66;
+}
+
+.log-entry.log-failure {
+  background: #f8d7da;
+  border-left-color: #ff6b6b;
+}
+
+.log-entry.log-partial {
+  background: #fff3cd;
+  border-left-color: #ffc107;
+}
+
+.log-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.log-status {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.log-time {
+  font-size: 12px;
+  color: #666;
+}
+
+.log-error {
+  margin: 0;
+  font-size: 13px;
+  color: #c82333;
+  font-weight: 500;
+}
+
+.log-output {
+  margin-top: 8px;
+}
+
+.log-output summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: #667eea;
+}
+
+.log-output pre {
+  margin: 8px 0 0 0;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-size: 11px;
+  overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .details-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-item {
+    flex-wrap: wrap;
+  }
+}

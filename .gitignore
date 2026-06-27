@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.production
+.env.*
+
+# Build Outputs
+dist/
+build/
+coverage/
+dist-ssr/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test and Cache Files
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary / OS Files
+.DS_Store
+tmp/
+tmp_mocks/
+tb.txt
+tmp_seed_log.txt
+procs.txt
+tb.txt
+verify_fix.py
+reproduce_error.py
+2.0.0

@@ -1,0 +1,32 @@
+.viewContainer {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+.timelineWrapper {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 500px;
+}

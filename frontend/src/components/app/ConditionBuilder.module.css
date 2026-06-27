@@ -1,0 +1,541 @@
+/* ═══════════════════════════════════════════
+   CONDITION BUILDER — Glassmorphism Card
+   ═══════════════════════════════════════════ */
+
+.conditionCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.conditionCard.active {
+  border-color: rgba(79, 168, 213, 0.25);
+  box-shadow: 0 0 20px rgba(79, 168, 213, 0.06);
+}
+
+.conditionCard.hasError {
+  border-color: rgba(251, 191, 36, 0.3);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.06);
+}
+
+/* Header with toggle */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px dashed var(--border-subtle);
+}
+
+.cardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.cardIcon {
+  color: var(--text-muted);
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.toggle.toggleOn {
+  background: rgba(79, 168, 213, 0.3);
+  border-color: rgba(79, 168, 213, 0.4);
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.toggleOn .toggleKnob {
+  left: 20px;
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px rgba(79, 168, 213, 0.4);
+}
+
+/* Condition Body */
+.conditionBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: condFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mode Tabs (Dropdowns vs Natural Language) */
+.modeTabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.modeTab {
+  flex: 1;
+  padding: 7px 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.modeTab:hover {
+  color: var(--text-secondary);
+}
+
+.modeTabActive {
+  background: rgba(79, 168, 213, 0.12);
+  color: var(--accent-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown Builder Row */
+.builderRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.builderField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.builderLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  padding: 10px 32px 10px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-body);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(79, 168, 213, 0.1);
+}
+
+.selectArrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.valueInput {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.valueInput:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(79, 168, 213, 0.1);
+}
+
+.valueInput::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Natural Language Input */
+.nlInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nlInput {
+  width: 100%;
+  padding: 12px 14px;
+  padding-right: 44px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: all 0.2s;
+  resize: none;
+  min-height: 60px;
+  box-sizing: border-box;
+}
+
+.nlInput:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(79, 168, 213, 0.1);
+}
+
+.nlInput::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.nlInputContainer {
+  position: relative;
+}
+
+.nlParseBtn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(79, 168, 213, 0.15);
+  color: var(--accent-blue);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.nlParseBtn:hover {
+  background: rgba(79, 168, 213, 0.25);
+  transform: scale(1.05);
+}
+
+.nlParseBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.nlHint {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+/* Summary Pill */
+.summaryPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  border-radius: 10px;
+  animation: condFadeIn 0.3s ease;
+}
+
+.summaryIcon {
+  color: #34d399;
+  flex-shrink: 0;
+}
+
+.summaryText {
+  font-size: 12px;
+  font-weight: 600;
+  color: #34d399;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.summaryRemove {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.summaryRemove:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+/* Error State */
+.errorPill {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  border-radius: 10px;
+  animation: condShake 0.4s ease;
+}
+
+.errorIcon {
+  color: #fbbf24;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.errorTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.errorMessage {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Parsing Spinner */
+.parsingState {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(79, 168, 213, 0.06);
+  border: 1px solid rgba(79, 168, 213, 0.12);
+  border-radius: 10px;
+}
+
+.parsingSpinner {
+  animation: condSpin 1s linear infinite;
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
+.parsingText {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Collapsed State */
+.collapsedInfo {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.collapsedInfo:hover {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Condition Row */
+.conditionRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  animation: condFadeIn 0.3s ease;
+}
+
+.rowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rowIndex {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-blue);
+}
+
+.rowRemove {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.rowRemove:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+/* AND Divider */
+.andDivider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.andDivider::before,
+.andDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(79, 168, 213, 0.15);
+}
+
+.andLabel {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+  background: rgba(79, 168, 213, 0.08);
+  border-radius: 4px;
+}
+
+/* Add Condition Button */
+.addConditionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: transparent;
+  border: 1px dashed rgba(79, 168, 213, 0.2);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addConditionBtn:hover {
+  border-color: rgba(79, 168, 213, 0.4);
+  color: var(--accent-blue);
+  background: rgba(79, 168, 213, 0.04);
+}
+
+/* Condition Count Badge */
+.conditionCount {
+  background: rgba(79, 168, 213, 0.15);
+  color: var(--accent-blue);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* AND Note */
+.andNote {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 6px 12px;
+  background: rgba(79, 168, 213, 0.04);
+  border-radius: 6px;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes condFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes condShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+@keyframes condSpin {
+  to { transform: rotate(360deg); }
+}

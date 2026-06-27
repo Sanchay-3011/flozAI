@@ -1,0 +1,814 @@
+# FlozAI Capabilities - Source of Truth
+# Expanded MVP Version 2.0
+
+triggers:
+  - id: "form_submission"
+    display_name: "Form Submission"
+    description: "Triggered when a form is submitted"
+    required_params:
+      - name: "form_id"
+        type: "string"
+        description: "ID of the form"
+    optional_params: []
+
+  - id: "new_record"
+    display_name: "New Record"
+    description: "Triggered when a new record is created"
+    required_params:
+      - name: "table_name"
+        type: "string"
+        description: "Name of the table to monitor"
+    optional_params:
+      - name: "filter_condition"
+        type: "string"
+        description: "Optional filter condition"
+
+  - id: "scheduled_time"
+    display_name: "Scheduled Time"
+    description: "Triggered at a specific time or recurring interval"
+    required_params:
+      - name: "schedule"
+        type: "string"
+        description: "Cron expression or natural language time"
+    optional_params: []
+
+  - id: "new_email"
+    display_name: "New Email Received"
+    description: "Triggered when a new email arrives matching criteria"
+    required_params: []
+    optional_params:
+      - name: "from_filter"
+        type: "string"
+        description: "Filter by sender"
+      - name: "subject_filter"
+        type: "string"
+        description: "Filter by subject keyword"
+
+  - id: "new_lead"
+    display_name: "New Lead"
+    description: "Triggered when a new lead is created in a CRM"
+    required_params: []
+    optional_params:
+      - name: "lead_score_threshold"
+        type: "number"
+        description: "Minimum lead score to trigger"
+      - name: "source"
+        type: "string"
+        description: "Lead source filter"
+
+  - id: "lead_score_change"
+    display_name: "Lead Score Change"
+    description: "Triggered when a lead score crosses a threshold"
+    required_params:
+      - name: "threshold"
+        type: "number"
+        description: "Score threshold to trigger on"
+    optional_params: []
+
+  - id: "new_payment"
+    display_name: "New Payment"
+    description: "Triggered when a payment is received"
+    required_params: []
+    optional_params:
+      - name: "amount_threshold"
+        type: "number"
+        description: "Minimum payment amount"
+
+  - id: "failed_payment"
+    display_name: "Failed Payment"
+    description: "Triggered when a payment fails"
+    required_params: []
+    optional_params: []
+
+  - id: "new_ticket"
+    display_name: "New Support Ticket"
+    description: "Triggered when a new support ticket is created"
+    required_params: []
+    optional_params:
+      - name: "priority_filter"
+        type: "string"
+        description: "Filter by priority level"
+
+  - id: "webhook"
+    display_name: "Webhook"
+    description: "Triggered by an incoming HTTP webhook"
+    required_params:
+      - name: "endpoint"
+        type: "string"
+        description: "Webhook endpoint path"
+    optional_params: []
+
+  - id: "new_row"
+    display_name: "New Spreadsheet Row"
+    description: "Triggered when a new row is added to a spreadsheet"
+    required_params: []
+    optional_params:
+      - name: "sheet_name"
+        type: "string"
+        description: "Specific sheet tab name"
+
+  - id: "new_mention"
+    display_name: "New Social Mention"
+    description: "Triggered when a keyword or brand is mentioned"
+    required_params: []
+    optional_params:
+      - name: "keyword"
+        type: "string"
+        description: "Keyword or hashtag to monitor"
+
+  - id: "manual"
+    display_name: "Manual Run"
+    description: "Triggered manually by the user"
+    required_params: []
+    optional_params: []
+
+actions:
+  - id: "send_email"
+    display_name: "Send Email"
+    description: "Send an email"
+    required_params:
+      - name: "to"
+        type: "string"
+        description: "Recipient email"
+      - name: "subject"
+        type: "string"
+        description: "Email subject"
+      - name: "body"
+        type: "string"
+        description: "Email body"
+    optional_params:
+      - name: "cc"
+        type: "string"
+        description: "CC recipients"
+
+  - id: "send_slack"
+    display_name: "Send Slack Message"
+    description: "Send a message to a Slack channel or user"
+    required_params:
+      - name: "channel"
+        type: "string"
+        description: "Slack channel or user"
+      - name: "message"
+        type: "string"
+        description: "Message content"
+    optional_params:
+      - name: "username"
+        type: "string"
+        description: "Bot display name"
+
+  - id: "send_whatsapp"
+    display_name: "Send WhatsApp Message"
+    description: "Send a WhatsApp message"
+    required_params:
+      - name: "phone_number"
+        type: "string"
+        description: "Recipient phone number"
+      - name: "message"
+        type: "string"
+        description: "Message content"
+    optional_params: []
+
+  - id: "create_record"
+    display_name: "Create Record"
+    description: "Create a new record in a table or CRM"
+    required_params:
+      - name: "table_name"
+        type: "string"
+        description: "Target table or object name"
+      - name: "field_mappings"
+        type: "object"
+        description: "Field names and values"
+    optional_params: []
+
+  - id: "update_record"
+    display_name: "Update Record"
+    description: "Update an existing record"
+    required_params:
+      - name: "table_name"
+        type: "string"
+        description: "Target table or object name"
+      - name: "record_id"
+        type: "string"
+        description: "ID of record to update"
+      - name: "field_mappings"
+        type: "object"
+        description: "Fields to update"
+    optional_params: []
+
+  - id: "create_task"
+    display_name: "Create Task"
+    description: "Create a task or to-do item"
+    required_params:
+      - name: "title"
+        type: "string"
+        description: "Task title"
+    optional_params:
+      - name: "assignee"
+        type: "string"
+        description: "Person to assign the task to"
+      - name: "due_date"
+        type: "string"
+        description: "Task due date"
+      - name: "description"
+        type: "string"
+        description: "Task description"
+
+  - id: "create_post"
+    display_name: "Create Social Post"
+    description: "Create and publish a post on a social platform"
+    required_params:
+      - name: "content"
+        type: "string"
+        description: "Post content"
+    optional_params:
+      - name: "image_url"
+        type: "string"
+        description: "Optional image to attach"
+      - name: "schedule_time"
+        type: "string"
+        description: "When to publish the post"
+
+  - id: "send_notification"
+    display_name: "Send Notification"
+    description: "Send a push or in-app notification"
+    required_params:
+      - name: "title"
+        type: "string"
+        description: "Notification title"
+      - name: "message"
+        type: "string"
+        description: "Notification message"
+    optional_params: []
+
+  - id: "enrich_contact"
+    display_name: "Enrich Contact"
+    description: "Look up and enrich contact data from an external source"
+    required_params:
+      - name: "email"
+        type: "string"
+        description: "Contact email to enrich"
+    optional_params: []
+
+  - id: "assign_owner"
+    display_name: "Assign Owner"
+    description: "Assign a record or lead to a team member"
+    required_params:
+      - name: "owner"
+        type: "string"
+        description: "Team member to assign to"
+    optional_params:
+      - name: "round_robin"
+        type: "boolean"
+        description: "Distribute evenly across team"
+
+  - id: "add_to_sequence"
+    display_name: "Add to Email Sequence"
+    description: "Enroll a contact into a marketing email sequence"
+    required_params:
+      - name: "sequence_id"
+        type: "string"
+        description: "ID of the sequence to enroll in"
+    optional_params: []
+
+  - id: "sync_record"
+    display_name: "Sync Record"
+    description: "Sync a record from one system to another"
+    required_params:
+      - name: "source"
+        type: "string"
+        description: "Source system"
+      - name: "destination"
+        type: "string"
+        description: "Destination system"
+    optional_params:
+      - name: "field_mappings"
+        type: "object"
+        description: "How to map fields between systems"
+
+  - id: "generate_content"
+    display_name: "Generate AI Content"
+    description: "Use AI to generate text content such as posts, emails, or summaries"
+    required_params:
+      - name: "prompt"
+        type: "string"
+        description: "Instructions for what to generate"
+    optional_params:
+      - name: "tone"
+        type: "string"
+        description: "Tone of voice: professional, casual, etc."
+      - name: "length"
+        type: "string"
+        description: "Short, medium, or long"
+
+  - id: "search_web"
+    display_name: "Search Web / News"
+    description: "Search the web or news for recent information on a topic"
+    required_params:
+      - name: "query"
+        type: "string"
+        description: "Search query"
+    optional_params:
+      - name: "source"
+        type: "string"
+        description: "Specific source or domain to search"
+
+  - id: "add_spreadsheet_row"
+    display_name: "Add Spreadsheet Row"
+    description: "Append a row to a spreadsheet"
+    required_params:
+      - name: "sheet_id"
+        type: "string"
+        description: "Spreadsheet ID or name"
+      - name: "row_data"
+        type: "object"
+        description: "Column values for the new row"
+    optional_params: []
+
+  - id: "log_event"
+    display_name: "Log Event"
+    description: "Log an event or data point to a tracking system"
+    required_params:
+      - name: "event_name"
+        type: "string"
+        description: "Name of the event"
+    optional_params:
+      - name: "properties"
+        type: "object"
+        description: "Event properties"
+
+  - id: "check_availability"
+    display_name: "Check Availability"
+    description: "Check available time slots in a calendar"
+    required_params: []
+    optional_params:
+      - name: "date_range"
+        type: "string"
+        description: "Date range to check"
+      - name: "duration"
+        type: "string"
+        description: "Meeting duration"
+
+  - id: "create_appointment"
+    display_name: "Create Appointment"
+    description: "Create an appointment or event"
+    required_params:
+      - name: "schedule_time"
+        type: "string"
+        description: "Time of the meeting"
+    optional_params:
+      - name: "title"
+        type: "string"
+        description: "Appointment title"
+  
+  - id: "wait"
+    display_name: "Wait / Delay"
+    description: "Pause the workflow for a specific duration"
+    required_params:
+      - name: "duration"
+        type: "string"
+        description: "Duration to wait (e.g., '24 hours', '10 minutes')"
+    optional_params: []
+
+  - id: "send_webhook"
+    display_name: "Send Webhook"
+    description: "Send an HTTP webhook to an external URL"
+    required_params:
+      - name: "url"
+        type: "string"
+        description: "Target webhook URL"
+    optional_params:
+      - name: "method"
+        type: "string"
+        description: "HTTP method (POST, PUT, GET)"
+      - name: "body"
+        type: "object"
+        description: "Request body data"
+
+  - id: "http_request"
+    display_name: "HTTP Request"
+    description: "Send a generic HTTP request"
+    required_params:
+      - name: "url"
+        type: "string"
+        description: "Target URL"
+    optional_params:
+      - name: "method"
+        type: "string"
+        description: "HTTP method"
+
+  - id: "add_row"
+    display_name: "Add Row"
+    description: "Append a row to a spreadsheet"
+    required_params:
+      - name: "spreadsheet_id"
+        type: "string"
+        description: "Target spreadsheet ID"
+    optional_params:
+      - name: "values"
+        type: "object"
+        description: "Row values to append"
+
+  - id: "read_range"
+    display_name: "Read Range"
+    description: "Read a range of cells from a spreadsheet"
+    required_params:
+      - name: "spreadsheet_id"
+        type: "string"
+        description: "Target spreadsheet ID"
+    optional_params:
+      - name: "range"
+        type: "string"
+        description: "Cell range (e.g. Sheet1!A1:Z100)"
+
+  - id: "create_page"
+    display_name: "Create Page"
+    description: "Create a new page in Notion"
+    required_params: []
+    optional_params:
+      - name: "title"
+        type: "string"
+        description: "Page title"
+      - name: "content"
+        type: "string"
+        description: "Page content"
+
+  - id: "add_to_database"
+    display_name: "Add to Database"
+    description: "Add a row to a Notion or Airtable database"
+    required_params: []
+    optional_params:
+      - name: "database_id"
+        type: "string"
+        description: "Target database ID"
+
+  - id: "list_records"
+    display_name: "List Records"
+    description: "List records from a table or database"
+    required_params: []
+    optional_params:
+      - name: "table_name"
+        type: "string"
+        description: "Table or database to read"
+
+  - id: "create_invoice"
+    display_name: "Create Invoice"
+    description: "Create a payment invoice"
+    required_params:
+      - name: "customer"
+        type: "string"
+        description: "Customer ID"
+    optional_params: []
+
+  - id: "send_message"
+    display_name: "Send Message"
+    description: "Send a message via a messaging platform"
+    required_params:
+      - name: "message"
+        type: "string"
+        description: "Message content"
+    optional_params:
+      - name: "to"
+        type: "string"
+        description: "Recipient"
+
+  - id: "create_event"
+    display_name: "Create Calendar Event"
+    description: "Create a calendar event"
+    required_params: []
+    optional_params:
+      - name: "summary"
+        type: "string"
+        description: "Event title"
+      - name: "start"
+        type: "string"
+        description: "Start time (ISO 8601)"
+      - name: "end"
+        type: "string"
+        description: "End time (ISO 8601)"
+
+  - id: "list_events"
+    display_name: "List Calendar Events"
+    description: "List upcoming calendar events"
+    required_params: []
+    optional_params: []
+
+  - id: "ai_summarize"
+    display_name: "AI Summarize"
+    description: "Use AI to summarize content"
+    required_params: []
+    optional_params:
+      - name: "prompt"
+        type: "string"
+        description: "What to summarize"
+
+  - id: "ai_analyze"
+    display_name: "AI Analyze"
+    description: "Use AI to analyze data"
+    required_params: []
+    optional_params:
+      - name: "prompt"
+        type: "string"
+        description: "Analysis instructions"
+
+  - id: "ai_search"
+    display_name: "AI Web Search"
+    description: "Search the web using AI"
+    required_params: []
+    optional_params:
+      - name: "query"
+        type: "string"
+        description: "Search query"
+
+  - id: "web_search"
+    display_name: "Web Search"
+    description: "Search the web for information"
+    required_params:
+      - name: "query"
+        type: "string"
+        description: "Search query"
+    optional_params: []
+
+  - id: "get_weather"
+    display_name: "Get Weather"
+    description: "Get the current weather for a specific location"
+    required_params:
+      - name: "location"
+        type: "string"
+        description: "City or region name"
+    optional_params: []
+
+integrations:
+  - id: "weather"
+    display_name: "Weather"
+    supported_triggers: []
+    supported_actions:
+      - "get_weather"
+
+  - id: "gmail"
+    display_name: "Gmail"
+    supported_triggers:
+      - "new_email"
+    supported_actions:
+      - "send_email"
+
+  - id: "google_forms"
+    display_name: "Google Forms"
+    supported_triggers:
+      - "form_submission"
+    supported_actions: []
+
+  - id: "google_sheets"
+    display_name: "Google Sheets"
+    supported_triggers:
+      - "new_row"
+    supported_actions:
+      - "add_spreadsheet_row"
+      - "add_row"
+      - "read_range"
+      - "create_record"
+      - "update_record"
+
+  - id: "slack"
+    display_name: "Slack"
+    supported_triggers: []
+    supported_actions:
+      - "send_slack"
+      - "send_message"
+      - "post_message"
+      - "send_notification"
+
+  - id: "whatsapp"
+    display_name: "WhatsApp"
+    supported_triggers: []
+    supported_actions:
+      - "send_whatsapp"
+      - "send_message"
+      - "send_notification"
+
+  - id: "generic_crm"
+    display_name: "CRM"
+    supported_triggers:
+      - "new_lead"
+      - "new_record"
+      - "form_submission"
+      - "lead_score_change"
+    supported_actions:
+      - "create_record"
+      - "update_record"
+      - "assign_owner"
+      - "enrich_contact"
+      - "add_to_sequence"
+      - "sync_record"
+
+  - id: "hubspot"
+    display_name: "HubSpot"
+    supported_triggers:
+      - "new_lead"
+      - "lead_score_change"
+      - "new_record"
+    supported_actions:
+      - "create_record"
+      - "update_record"
+      - "assign_owner"
+      - "add_to_sequence"
+      - "enrich_contact"
+
+  - id: "salesforce"
+    display_name: "Salesforce"
+    supported_triggers:
+      - "new_lead"
+      - "new_record"
+      - "lead_score_change"
+    supported_actions:
+      - "create_record"
+      - "update_record"
+      - "assign_owner"
+      - "enrich_contact"
+      - "sync_record"
+
+  - id: "stripe"
+    display_name: "Stripe"
+    supported_triggers:
+      - "new_payment"
+      - "failed_payment"
+    supported_actions:
+      - "log_event"
+      - "create_invoice"
+
+  - id: "quickbooks"
+    display_name: "QuickBooks"
+    supported_triggers: []
+    supported_actions:
+      - "create_record"
+      - "sync_record"
+
+  - id: "linkedin"
+    display_name: "LinkedIn"
+    supported_triggers:
+      - "new_mention"
+    supported_actions:
+      - "create_post"
+
+  - id: "twitter"
+    display_name: "Twitter / X"
+    supported_triggers:
+      - "new_mention"
+    supported_actions:
+      - "create_post"
+
+  - id: "instagram"
+    display_name: "Instagram"
+    supported_triggers:
+      - "new_mention"
+    supported_actions:
+      - "create_post"
+      - "send_notification"
+
+  - id: "clearbit"
+    display_name: "Clearbit"
+    supported_triggers: []
+    supported_actions:
+      - "enrich_contact"
+
+  - id: "mailchimp"
+    display_name: "Mailchimp"
+    supported_triggers: []
+    supported_actions:
+      - "add_to_sequence"
+      - "send_email"
+
+  - id: "notion"
+    display_name: "Notion"
+    supported_triggers:
+      - "new_record"
+    supported_actions:
+      - "create_record"
+      - "create_page"
+      - "add_to_database"
+      - "update_record"
+      - "add_spreadsheet_row"
+
+  - id: "airtable"
+    display_name: "Airtable"
+    supported_triggers:
+      - "new_record"
+      - "new_row"
+    supported_actions:
+      - "create_record"
+      - "list_records"
+      - "update_record"
+      - "add_spreadsheet_row"
+
+  - id: "asana"
+    display_name: "Asana"
+    supported_triggers:
+      - "new_record"
+    supported_actions:
+      - "create_task"
+      - "update_record"
+
+  - id: "trello"
+    display_name: "Trello"
+    supported_triggers:
+      - "new_record"
+    supported_actions:
+      - "create_task"
+      - "update_record"
+
+  - id: "jira"
+    display_name: "Jira"
+    supported_triggers:
+      - "new_ticket"
+      - "new_record"
+    supported_actions:
+      - "create_task"
+      - "update_record"
+
+  - id: "zendesk"
+    display_name: "Zendesk"
+    supported_triggers:
+      - "new_ticket"
+    supported_actions:
+      - "create_record"
+      - "update_record"
+      - "send_notification"
+
+  - id: "intercom"
+    display_name: "Intercom"
+    supported_triggers:
+      - "new_lead"
+      - "new_ticket"
+    supported_actions:
+      - "send_notification"
+      - "create_record"
+
+  - id: "typeform"
+    display_name: "Typeform"
+    supported_triggers:
+      - "form_submission"
+    supported_actions: []
+
+  - id: "calendly"
+    display_name: "Calendly"
+    supported_triggers:
+     - "form_submission"
+     - "new_record"
+    supported_actions: []
+
+  - id: "google_calendar"
+    display_name: "Google Calendar"
+    supported_triggers:
+      - "new_record"
+      - "scheduled_time"
+    supported_actions:
+      - "check_availability"
+      - "create_appointment"
+      - "create_event"
+      - "list_events"
+      - "create_record"
+
+  - id: "openai"
+    display_name: "OpenAI / AI"
+    supported_triggers: []
+    supported_actions:
+      - "generate_content"
+      - "ai_summarize"
+      - "ai_analyze"
+
+  - id: "perplexity"
+    display_name: "Perplexity / Web Search"
+    supported_triggers: []
+    supported_actions:
+      - "search_web"
+      - "web_search"
+      - "ai_search"
+      - "generate_content"
+
+  - id: "crm"
+    display_name: "Generic CRM"
+    supported_triggers:
+      - "new_lead"
+      - "new_record"
+    supported_actions:
+      - "create_record"
+      - "update_record"
+      - "assign_owner"
+
+  - id: "webhook"
+    display_name: "Webhook"
+    supported_triggers:
+      - "webhook"
+      - "manual"
+    supported_actions:
+      - "send_webhook"
+      - "http_request"
+      - "log_event"
+      - "send_notification"
+
+  - id: "scheduler"
+    display_name: "Scheduler"
+    supported_triggers:
+      - "scheduled_time"
+      - "manual"
+    supported_actions:
+      - "wait"

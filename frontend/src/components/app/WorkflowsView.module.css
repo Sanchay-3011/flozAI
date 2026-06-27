@@ -1,0 +1,255 @@
+.viewContainer {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+.createBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--text-primary);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.createBtn:hover {
+  background: #e2e8f0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  width: 320px;
+}
+
+.searchIcon {
+  color: var(--text-muted);
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.tableContainer {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.table td {
+  padding: 16px 24px;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+}
+
+.tableRow {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tableRow:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tableRow:last-child td {
+  border-bottom: none;
+}
+
+.nameCell {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.wfIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(79, 168, 213, 0.1);
+  color: #4fa8d5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wfNameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wfName {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.wfSteps {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.execCell, .timeCell {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.iconBtn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 24px;
+}
+
+.emptyState h3 {
+  margin: 16px 0 8px 0;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+.emptyState p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0 0 24px 0;
+}
+
+.createBtnEmpty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.createBtnEmpty:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
